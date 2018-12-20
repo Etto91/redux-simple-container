@@ -1,0 +1,50 @@
+{
+    "name": "redux-simple-container",
+    "version": "1.0.0",
+    "description": "HOC to automate the creation of redux containers",
+    "main": "build/redux-simple-container.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Etto91/redux-simple-container.git"
+    },
+    "keywords": [
+        "redux",
+        "hoc",
+        "react",
+        "container",
+        "connect"
+    ],
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-eslint": "^9.0.0",
+        "babel-loader": "7",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-plugin-transform-object-assign": "^6.22.0",
+        "babel-preset-airbnb": "^2.4.0",
+        "eslint": "^5.5.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-plugin-import": "^2.9.0",
+        "eslint-plugin-jsx-a11y": "^6.0.3",
+        "eslint-plugin-react": "^7.7.0",
+        "react": "^16.7.0",
+        "react-dom": "^16.2.0",
+        "redux": "^4.0.1",
+        "redux-logger": "^3.0.6",
+        "redux-thunk": "^2.3.0",
+        "styled-components": "^3.4.5",
+        "webpack": "^3.8.1",
+        "webpack-node-externals": "^1.6.0"
+    },
+    "author": "Ettore Panini",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Etto91/redux-simple-container/issues"
+    },
+    "homepage": "https://github.com/Etto91/redux-simple-container#readme",
+    "dependencies": {
+        "react-redux": "^6.0.0"
+    }
+}
