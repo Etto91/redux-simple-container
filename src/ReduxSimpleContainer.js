@@ -12,7 +12,7 @@ const removeUnderScoreLowerCase = string =>
         .join(" ")
         .toLowerCase();
 
-const ReduxSimpleContainer = (actions, stateRequested, component) => {
+const ReduxSimpleContainer = (actions, stateRequested, Component) => {
     const mapStateToProps = (state, ownProps) => {
         if (!stateRequested || !stateRequested.length) {
             return { ...ownProps };
@@ -85,7 +85,7 @@ const ReduxSimpleContainer = (actions, stateRequested, component) => {
     return connect(
         mapStateToProps,
         mapDispatchToProps
-    )(component);
+    )(Component);
 };
 
 export default ReduxSimpleContainer;

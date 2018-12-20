@@ -4,7 +4,9 @@ import { Provider } from "react-redux";
 import { applyMiddleware, createStore, compose, combineReducers } from "redux";
 import logger from "redux-logger";
 import ReduxThunk from "redux-thunk";
-import ReduxSimpleContainer from "./ReduxSimpleContainer";
+import App from "./App";
+import Root from "./Root";
+
 export const title = (state = { title: "ReduxSimpleContainer" }, action) => {
     switch (action.type) {
         case "CHANGE_TITLE":
@@ -26,30 +28,9 @@ if (process.env.NODE_ENV !== "production") {
 }
 const store = createStore(todoApp, enhancer);
 
-class App extends React.Component {
-    render() {
-        return <NameComponent />;
-    }
-}
-
-const NameComponentPres = ({ title, changeTitle }) => (
-    <div>
-        <h1>{title}</h1>
-        <button onClick={() => changeTitle("NEW TITLE")}>Change Title</button>
-    </div>
-);
-
-const NameComponent = ReduxSimpleContainer(
-    [{ type: "CHANGE_TITLE", params: ["title"] }, "dispatch"],
-    ["title"],
-    NameComponentPres
-);
-
-console.log(NameComponent);
-
 ReactDOM.render(
-    <Provider store={store}>
-        <NameComponent />
-    </Provider>,
+    <Root store={store}>
+        <App />
+    </Root>,
     document.getElementById("app")
 );
