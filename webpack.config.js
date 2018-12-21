@@ -8,7 +8,7 @@ const outputPath = process.env.BUILD
 
 const testConfig = {
     mode: "development",
-    entry: "./src/index.js",
+    entry: "./demo/index.js",
     devtool: "inline-source-map",
     externals: "./build/redux-simple-container.js",
     output: {
@@ -19,7 +19,7 @@ const testConfig = {
         rules: [
             {
                 loader: "babel-loader",
-                include: [path.resolve("./src")]
+                include: [path.resolve("./demo")]
             }
         ]
     }

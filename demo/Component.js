@@ -1,5 +1,5 @@
 import React from "react";
-import ReduxSimpleContainer from "./ReduxSimpleContainer";
+import ReduxSimpleContainer from "../src/ReduxSimpleContainer";
 
 const NameComponentPres = ({ title, changeTitle }) => (
     <div>
