@@ -33,6 +33,7 @@ const buildConfig = {
         filename: "redux-simple-container.js",
         libraryTarget: "commonjs2"
     },
+    externals: ["react", "react-dom"],
     module: {
         rules: [
             {

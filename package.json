@@ -5,7 +5,7 @@
     "main": "build/redux-simple-container.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "build=TRUE webpack"
+        "build": "BUILD=true webpack"
     },
     "repository": {
         "type": "git",
