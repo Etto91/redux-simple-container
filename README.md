@@ -50,8 +50,7 @@ export default ReduxSimpleContainer(
 
 ```javascript
 import { connect } from "react-redux";
-import component from "../components/component";
-import { actionCreator } from "../actionPath";
+import TitleComponent from "../components/TitleComponent"
 
 const mapStateToProps = (state, ownProps) => ({
     title: state.titleState.title
@@ -70,15 +69,16 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(component);
+)(TitleComponent);
 ```
 
 to summarize is a function that takes these 3 parameters.
 
-#Params
+# Parameters
 
--   **actions**: An array of actions that will create the mapDispatchToProps object. they can be of three type:
--   **string**: the prop name is the camelCase value of the string and it is a function that dispatch an action with the string passed as a type. you can pass "dispatch" and you will get the dispatch function as a prop. example of passing "CHANGE_TITLE"
+**actions**: First parameter. An array of actions that will create the mapDispatchToProps object. they can be of three type:
+
+string: the prop name is the camelCase value of the string and it is a function that dispatch an action with the string passed as a type. you can pass "dispatch" and you will get the dispatch function as a prop. example of passing "CHANGE_TITLE"
 
 ```
 {
@@ -88,20 +88,20 @@ to summarize is a function that takes these 3 parameters.
 }
 ```
 
--   **object**: actions objects can be of two types. first type is an object with the type of the action to dispatch and an array of params that you want to attach to the function. example an action like
+object: actions objects can be of two types. first type is an object with the type of the action to dispatch and an array of params that you want to attach to the function. example an action like
 
-````
+```
 {
   type: "CHANGE_TITLE",
   params: ["title"],
 }
-```<br /> creates a key in the mapDispatchToProps like this
-````
-
+```
+creates a key in the mapDispatchToProps like this
+```
 {
-...
-changeTitle: (title) => dispatch({ type: "CHANGE_TITLE", title }),
-...
+  ...
+  changeTitle: (title) => dispatch({ type: "CHANGE_TITLE", title }),
+  ...
 }
 
 ```
@@ -109,21 +109,22 @@ second type is an object with the name of the action props and the function the 
 ```
 
 {
-name: "secondTitleAction",
-trigger: (title) => dispatch => dispatch({ type: "CHANGE_TITLE", title }),
+  name: "secondTitleAction",
+  trigger: (title) => dispatch => dispatch({ type: "CHANGE_TITLE", title }),
 }
-
-```<br /> creates a key in the mapDispatchToProps like this
 
 ```
+creates a key in the mapDispatchToProps like this
 
+```
 {
-...
-secondTitleAction: (title) => dispatch({ type: "CHANGE_TITLE", title }),
-...
+  ...
+  secondTitleAction: (title) => dispatch({ type: "CHANGE_TITLE", title }),
+  ...
 }
+```
 
--   **stateRequested**: is an array of string. you have to pass a list of state key to map as a props. you can request nested state key split keys with a point. example if you pass an array like this
+**stateRequested**: Second parameter. Is an array of string. you have to pass a list of state key to map as a props. you can request nested state key split keys with a point. example if you pass an array like this
 
 ```
 ["book", "book.title", "book.author"]
@@ -139,4 +140,18 @@ it will create a mapStateToProps object like this
 }
 ```
 
--   **Component**: the component to connect.
+**Component**: Third parameter. the component to connect.
+
+
+# Contributig
+
+if you want to contribute to the development of the package feel free to do it. 
+
+
+```bash
+    npm install
+    // to build the demo folder
+    npm run dev
+    // to build the source
+    npm run build
+```
