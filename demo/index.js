@@ -7,7 +7,10 @@ import ReduxThunk from "redux-thunk";
 import App from "./App";
 import Root from "./Root";
 
-export const title = (state = { title: "ReduxSimpleContainer" }, action) => {
+export const titleState = (
+    state = { title: "ReduxSimpleContainer" },
+    action
+) => {
     switch (action.type) {
         case "CHANGE_TITLE":
             return { ...state, title: action.title };
@@ -16,7 +19,7 @@ export const title = (state = { title: "ReduxSimpleContainer" }, action) => {
     }
 };
 
-const todoApp = combineReducers({ title });
+const todoApp = combineReducers({ titleState });
 
 let middleware = [ReduxThunk];
 let enhancer = applyMiddleware(...middleware);
