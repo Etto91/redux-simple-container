@@ -1,10 +1,6 @@
 const path = require("path");
-const webpack = require("webpack");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-const outputPath = process.env.BUILD
-    ? path.resolve("./build")
-    : path.resolve("./test");
+const outputPath = path.resolve("./demo-build");
 
 const testConfig = {
     mode: "development",
@@ -25,24 +21,4 @@ const testConfig = {
     }
 };
 
-const buildConfig = {
-    entry: "./src/ReduxSimpleContainer.js",
-    mode: "production",
-    output: {
-        path: outputPath,
-        filename: "redux-simple-container.js",
-        libraryTarget: "commonjs2"
-    },
-    externals: ["react", "react-dom"],
-    module: {
-        rules: [
-            {
-                test: /\.js?$/,
-                use: "babel-loader",
-                exclude: /(node_modules)/
-            }
-        ]
-    }
-};
-
-module.exports = process.env.BUILD ? buildConfig : testConfig;
+module.exports = testConfig;

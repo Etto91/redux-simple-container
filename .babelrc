@@ -1,12 +1,20 @@
 {
-    "presets": ["@babel/preset-env"],
-    "sourceMaps": true,
-    "minified": false,
-    "plugins": [
-        "@babel/plugin-proposal-object-rest-spread",
-        "transform-object-entries",
-        "object-values-to-object-keys",
-        "add-module-exports",
-        "transform-async-to-generator"
-    ]
+    "env": {
+        "dev": {
+            "presets": [["airbnb", { "modules": false }]],
+            "plugins": ["transform-object-assign"]
+        },
+        "build": {
+            "presets": ["@babel/preset-env"],
+            "sourceMaps": true,
+            "minified": true,
+            "plugins": [
+                "@babel/plugin-proposal-object-rest-spread",
+                "transform-object-entries",
+                "object-values-to-object-keys",
+                "add-module-exports",
+                "transform-async-to-generator"
+            ]
+        }
+    }
 }

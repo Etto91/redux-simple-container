@@ -50,7 +50,10 @@ const ReduxSimpleContainer = (actions, stateRequested, Component) => {
 
             const { params, type, name, trigger } = action;
 
-            if (params && type) {
+            if (params && params.length && type) {
+                if (typeof type !== "string") {
+                    throw new Error("Need type parameter as a string");
+                }
                 return {
                     ...acc,
                     [toCamelCase(removeUnderScoreLowerCase(type))]: (...args) =>
@@ -68,6 +71,12 @@ const ReduxSimpleContainer = (actions, stateRequested, Component) => {
             }
 
             if (name && trigger) {
+                if (typeof name !== "string") {
+                    throw new Error("Need type parameter as a string");
+                }
+                if (typeof trigger !== "function") {
+                    throw new Error("Need type parameter as a string");
+                }
                 return {
                     ...acc,
                     [name]: (...args) => {
