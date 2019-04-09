@@ -1,22 +1,29 @@
 import React from "react";
-import ReduxSimpleContainer from "../src/ReduxSimpleContainer";
+import reduxSimpleContainer from "../src/reduxSimpleContainer";
 
-const TitleComponent = ({ title, changeTitle, changeTitleSecondButton }) => (
-    <div>
-        <h1>{title}</h1>
-        <button onClick={() => changeTitle("NEW TITLE")}>Change Title</button>
-        <button onClick={() => changeTitleSecondButton()}>Change Title</button>
-    </div>
-);
-
-const actionCustom = {
-    name: "changeTitleSecondButton",
-    trigger: () => dispatch =>
-        dispatch({ type: "CHANGE_TITLE", title: "SECOND TITLE" })
+const TitleComponent = ({ title, changeTitle, changeTitleSecondButton }) => {
+    return (
+        <div>
+            <h1>{title}</h1>
+            <button onClick={() => changeTitle("NEW TITLE")}>
+                Change Title
+            </button>
+            <button onClick={() => changeTitleSecondButton()}>
+                Change Title
+            </button>
+        </div>
+    );
 };
 
-export default ReduxSimpleContainer(
-    [{ type: "CHANGE_TITLE", params: ["title"] }, "dispatch", actionCustom],
+const changeTitleSecondButton = () => dispatch =>
+    dispatch({ type: "CHANGE_TITLE", title: "SECOND TITLE" });
+
+export default reduxSimpleContainer(
+    [
+        { type: "CHANGE_TITLE", params: ["title"] },
+        "dispatch",
+        changeTitleSecondButton
+    ],
     ["titleState.title"],
     TitleComponent
 );

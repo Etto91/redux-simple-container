@@ -8,7 +8,7 @@ import App from "./App";
 import Root from "./Root";
 
 export const titleState = (
-    state = { title: "ReduxSimpleContainer" },
+    state = { title: "reduxSimpleContainer" },
     action
 ) => {
     switch (action.type) {

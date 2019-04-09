@@ -19,10 +19,10 @@ It has happened to me very often to realize only at the end of the creation of a
 2. Import it:
 
 ```javascript
-import ReduxSimpleContainer from "redux-simple-container";
+import reduxSimpleContainer from "redux-simple-container";
 ```
 
-3. Create a simple component with a title and two action for change the title and wrap it up ReduxSimpleContainer HOC:
+3. Create a simple component with a title and two action for change the title and wrap it up reduxSimpleContainer HOC:
 
 ```javascript
 const TitleComponent = ({ title, changeTitle, changeTitleSecondButton }) => (
@@ -33,14 +33,13 @@ const TitleComponent = ({ title, changeTitle, changeTitleSecondButton }) => (
     </div>
 );
 
-const actionCustom = {
-    name: "changeTitleSecondButton",
-    trigger: () => dispatch =>
+const changeTitleSecondButton = () => dispatch =>
         dispatch({ type: "CHANGE_TITLE", title: "SECOND TITLE" })
 };
 
-export default ReduxSimpleContainer(
-    [{ type: "CHANGE_TITLE", params: ["title"] }, "dispatch", actionCustom],
+export default reduxSimpleContainer(
+    [{ type: "CHANGE_TITLE", params: ["title"] }, "dispatch",
+    changeTitleSecondButton],
     ["titleState.title"],
     TitleComponent
 );
@@ -50,7 +49,8 @@ export default ReduxSimpleContainer(
 
 ```javascript
 import { connect } from "react-redux";
-import TitleComponent from "../components/TitleComponent"
+import TitleComponent from "../components/TitleComponent";
+import { bindActionCreators } from "redux";
 
 const mapStateToProps = (state, ownProps) => ({
     title: state.titleState.title
@@ -59,11 +59,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
     changeTitle: title => dispatch({ type: "CHANGE_TITLE", title }),
     dispatch,
-    //with redux-thunk
-    changeTitleSecondButton: () =>
-        dispatch(() => dispatch =>
-            dispatch({ type: "CHANGE_TITLE", title: "SECOND TITLE" })
-        )
+    ...bindActionCreators({ changeTitleSecondButton }, dispatch)
 });
 
 export default connect(
@@ -88,7 +84,7 @@ string: the prop name is the camelCase value of the string and it is a function 
 }
 ```
 
-object: actions objects can be of two types. first type is an object with the type of the action to dispatch and an array of params that you want to attach to the function. example an action like
+object: action can be an object with the type of the action to dispatch and an array of params that you want to attach to the function. example an action like
 
 ```
 {
@@ -96,7 +92,9 @@ object: actions objects can be of two types. first type is an object with the ty
   params: ["title"],
 }
 ```
+
 creates a key in the mapDispatchToProps like this
+
 ```
 {
   ...
@@ -105,24 +103,8 @@ creates a key in the mapDispatchToProps like this
 }
 
 ```
-second type is an object with the name of the action props and the function the will be dispatched.
-```
 
-{
-  name: "secondTitleAction",
-  trigger: (title) => dispatch => dispatch({ type: "CHANGE_TITLE", title }),
-}
-
-```
-creates a key in the mapDispatchToProps like this
-
-```
-{
-  ...
-  secondTitleAction: (title) => dispatch({ type: "CHANGE_TITLE", title }),
-  ...
-}
-```
+otherwise you can simply pass function that will be bind as a props with redux bindActionCreators
 
 **stateRequested**: Second parameter. Is an array of string. you have to pass a list of state key to map as a props. you can request nested state key split keys with a point. example if you pass an array like this
 
@@ -142,11 +124,9 @@ it will create a mapStateToProps object like this
 
 **Component**: Third parameter. the component to connect.
 
-
 # Contributig
 
-if you want to contribute to the development of the package feel free to do it. 
-
+if you want to contribute to the development of the package feel free to do it.
 
 ```bash
     npm install

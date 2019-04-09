@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 const toCamelCase = string =>
     string
@@ -33,7 +34,7 @@ const ReduxSimpleContainer = (actions, stateRequested, Component) => {
         if (!actions || !actions.length) {
             return {};
         }
-        const dispatcActions = actions.reduce((acc, action) => {
+        const dispatchActions = actions.reduce((acc, action, index) => {
             if (typeof action === "string") {
                 if (action === "dispatch") {
                     return {
@@ -45,6 +46,26 @@ const ReduxSimpleContainer = (actions, stateRequested, Component) => {
                     ...acc,
                     [toCamelCase(removeUnderScoreLowerCase(action))]: () =>
                         dispatch({ type: action })
+                };
+            }
+
+            if (typeof action === "function") {
+                if (action.name) {
+                    return {
+                        ...acc,
+                        ...bindActionCreators(
+                            { [action.name]: action },
+                            dispatch
+                        )
+                    };
+                }
+
+                return {
+                    ...acc,
+                    ...bindActionCreators(
+                        { ["action" + index]: action },
+                        dispatch
+                    )
                 };
             }
 
@@ -88,7 +109,7 @@ const ReduxSimpleContainer = (actions, stateRequested, Component) => {
             return acc;
         }, {});
 
-        return dispatcActions;
+        return dispatchActions;
     };
 
     return connect(
