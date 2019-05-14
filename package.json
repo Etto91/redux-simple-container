@@ -1,6 +1,6 @@
 {
     "name": "redux-simple-container",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "HOC to automate the creation of redux containers",
     "main": "build/reduxSimpleContainer.js",
     "scripts": {
@@ -20,7 +20,7 @@
         "connect"
     ],
     "peerDependencies": {
-        "react-redux": "^6.0.0"
+        "react-redux": ">= 6.0.0"
     },
     "bundleDependencies": false,
     "devDependencies": {
