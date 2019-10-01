@@ -1,6 +1,6 @@
 {
     "name": "redux-simple-container",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "HOC to automate the creation of redux containers",
     "main": "build/reduxSimpleContainer.js",
     "scripts": {

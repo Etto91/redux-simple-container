@@ -100,9 +100,7 @@ const ReduxSimpleContainer = (actions, stateRequested, Component) => {
                 }
                 return {
                     ...acc,
-                    [name]: (...args) => {
-                        dispatch(trigger(...args));
-                    }
+                    [name]: (...args) => dispatch(trigger(...args))
                 };
             }
 
